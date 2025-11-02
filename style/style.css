@@ -1,0 +1,1212 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+:root {
+/* Premium Color Palette */
+--bg-primary: #0B0D17;
+--bg-secondary: #151829;
+--bg-tertiary: #1E2139;
+--bg-glass: rgba(255, 255, 255, 0.03);
+--bg-glass-hover: rgba(255, 255, 255, 0.08);
+
+/* Neon Accent Colors */
+--accent-primary: #00F5FF;
+--accent-secondary: #FF6B9D;
+--accent-tertiary: #C77DFF;
+--accent-success: #39FF14;
+--accent-warning: #FFD700;
+--accent-danger: #FF073A;
+
+/* Gradients */
+--gradient-primary: linear-gradient(135deg, #00F5FF 0%, #FF6B9D 50%, #C77DFF 100%);
+--gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+--gradient-success: linear-gradient(135deg, #39FF14 0%, #00FF88 100%);
+--gradient-danger: linear-gradient(135deg, #FF073A 0%, #FF6B9D 100%);
+
+/* Text Colors */
+--text-primary: #FFFFFF;
+--text-secondary: #E2E8F0;
+--text-muted: #94A3B8;
+--text-accent: #00F5FF;
+
+/* Borders & Shadows */
+--border-primary: rgba(255, 255, 255, 0.1);
+--border-accent: rgba(0, 245, 255, 0.3);
+--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+--shadow-md: 0 8px 25px rgba(0, 0, 0, 0.4);
+--shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.5);
+--shadow-neon: 0 0 30px rgba(0, 245, 255, 0.3);
+--shadow-neon-pink: 0 0 30px rgba(255, 107, 157, 0.3);
+
+/* Spacing & Layout */
+--radius-sm: 8px;
+--radius-md: 12px;
+--radius-lg: 16px;
+--radius-xl: 24px;
+
+/* Animations */
+--transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+--transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+--transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset & Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    font-weight: 400;
+    font-size: 16px;
+    position: relative;
+}
+
+/* Animated Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 245, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 107, 157, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(199, 125, 255, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -10;
+    animation: backgroundPulse 10s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* Streamlit App Container */
+.stApp {
+    background: transparent !important;
+}
+
+/* Hide Streamlit Elements */
+#MainMenu { visibility: hidden; }
+footer { visibility: hidden; }
+header { visibility: hidden; }
+.stDeployButton { display: none; }
+
+/* Main Layout */
+.main .block-container {
+    padding: 0 1rem 1rem 1rem !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+.stApp > div:first-child {
+    padding-top: 0 !important;
+}
+
+.stApp .main .block-container {
+    padding: 0 1rem 1rem 1rem !important;
+}
+
+/* Premium Header */
+.premium-header {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-primary);
+    padding: 1.5rem 2rem;
+    margin: 0 0 2rem 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+}
+
+.premium-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+}
+
+.premium-header h1 {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 2.5rem !important;
+    font-weight: 800 !important;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 !important;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
+}
+
+.premium-header p {
+    color: var(--text-secondary) !important;
+    font-size: 1.1rem !important;
+    font-weight: 400 !important;
+    margin: 0.5rem 0 0 0 !important;
+    opacity: 0.9;
+}
+
+/* Navigation Buttons */
+.stButton > button {
+    background: var(--bg-glass) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid var(--border-primary) !important;
+    border-radius: var(--radius-md) !important;
+    color: var(--text-primary) !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+    padding: 0.75rem 1.5rem !important;
+    transition: var(--transition-smooth) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    width: 100% !important;
+}
+
+.stButton > button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.stButton > button:hover::before {
+    left: 100%;
+}
+
+.stButton > button:hover {
+    background: var(--bg-glass-hover) !important;
+    border-color: var(--border-accent) !important;
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: var(--shadow-neon) !important;
+    color: var(--accent-primary) !important;
+}
+
+/* Primary Button (Active State) */
+.stButton > button[data-testid="baseButton-primary"] {
+    background: var(--gradient-primary) !important;
+    border: none !important;
+    color: white !important;
+    box-shadow: var(--shadow-neon) !important;
+}
+
+.stButton > button[data-testid="baseButton-primary"]:hover {
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: var(--shadow-neon), var(--shadow-lg) !important;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif !important;
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
+}
+
+h1 {
+    font-size: 3rem !important;
+    font-weight: 800 !important;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h2 {
+    font-size: 2.25rem !important;
+    font-weight: 700 !important;
+}
+
+h3 {
+    font-size: 1.75rem !important;
+    font-weight: 600 !important;
+    color: var(--accent-primary) !important;
+}
+
+p, span, div, label {
+    font-family: 'Outfit', sans-serif !important;
+    color: var(--text-primary) !important;
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+}
+
+/* Premium Cards */
+.premium-card {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.premium-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.premium-card:hover::before {
+    opacity: 1;
+}
+
+.premium-card:hover {
+    background: var(--bg-glass-hover);
+    border-color: var(--border-accent);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-neon);
+}
+
+/* Form Elements */
+.stTextInput > div > div,
+.stSelectbox > div > div,
+.stTextArea > div > div {
+    background: var(--bg-glass) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid var(--border-primary) !important;
+    border-radius: var(--radius-md) !important;
+    color: var(--text-primary) !important;
+    transition: var(--transition-smooth) !important;
+}
+
+.stTextInput > div > div:focus-within,
+.stSelectbox > div > div:focus-within,
+.stTextArea > div > div:focus-within {
+    border-color: var(--accent-primary) !important;
+    box-shadow: 0 0 0 2px rgba(0, 245, 255, 0.2) !important;
+    background: var(--bg-glass-hover) !important;
+}
+
+.stTextInput label,
+.stSelectbox label,
+.stTextArea label {
+    color: var(--text-primary) !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* File Uploader */
+.stFileUploader {
+    background: var(--bg-glass) !important;
+    border: 2px dashed var(--border-primary) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 2rem !important;
+    text-align: center !important;
+    transition: var(--transition-smooth) !important;
+}
+
+.stFileUploader:hover {
+    border-color: var(--accent-primary) !important;
+    background: var(--bg-glass-hover) !important;
+    box-shadow: var(--shadow-neon) !important;
+}
+
+/* Status Messages */
+.stSuccess {
+    background: rgba(57, 255, 20, 0.1) !important;
+    border: 1px solid var(--accent-success) !important;
+    border-radius: var(--radius-md) !important;
+    color: var(--accent-success) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.stError {
+    background: rgba(255, 7, 58, 0.1) !important;
+    border: 1px solid var(--accent-danger) !important;
+    border-radius: var(--radius-md) !important;
+    color: var(--accent-danger) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.stInfo {
+    background: rgba(0, 245, 255, 0.1) !important;
+    border: 1px solid var(--accent-primary) !important;
+    border-radius: var(--radius-md) !important;
+    color: var(--accent-primary) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.stWarning {
+    background: rgba(255, 215, 0, 0.1) !important;
+    border: 1px solid var(--accent-warning) !important;
+    border-radius: var(--radius-md) !important;
+    color: var(--accent-warning) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+/* Expanders */
+.stExpander {
+    background: var(--bg-glass) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid var(--border-primary) !important;
+    border-radius: var(--radius-lg) !important;
+    margin: 1rem 0 !important;
+    transition: var(--transition-smooth) !important;
+}
+
+.stExpander:hover {
+    background: var(--bg-glass-hover) !important;
+    border-color: var(--border-accent) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* Metrics */
+.stMetric {
+    background: var(--bg-glass) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid var(--border-primary) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 1.5rem !important;
+    transition: var(--transition-smooth) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.stMetric::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-primary);
+}
+
+.stMetric:hover {
+    background: var(--bg-glass-hover) !important;
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: var(--shadow-neon) !important;
+}
+
+/* Sidebar Override */
+.css-1d391kg {
+    display: none !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-secondary);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(0, 245, 255, 0.6);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .premium-header {
+        padding: 1rem;
+        margin: -1rem -1rem 1rem -1rem;
+    }
+    
+    .premium-header h1 {
+        font-size: 2rem !important;
+    }
+    
+    .stButton > button {
+        font-size: 0.8rem !important;
+        padding: 0.6rem 1rem !important;
+    }
+}
+
+/* Force all text to be visible */
+.stApp * {
+    color: var(--text-primary) !important;
+}
+
+.stApp p, .stApp span, .stApp div:not(.stButton) {
+    color: var(--text-primary) !important;
+}
+
+/* Navigation columns spacing */
+.stColumns {
+    gap: 0.5rem !important;
+}
+
+/* Remove extra spacing */
+div[data-testid="stVerticalBlock"] {
+    gap: 1rem !important;
+}
+
+/* Premium loading animation */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-primary);
+    border-top: 3px solid var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}/* Pre
+mium Dashboard Enhancements */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.metric-card {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    text-align: center;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gradient-primary);
+}
+
+.metric-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-neon);
+    border-color: var(--border-accent);
+}
+
+.metric-value {
+    font-size: 3rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 1rem 0;
+}
+
+.metric-label {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Floating Action Elements */
+.floating-element {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-neon);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    z-index: 100;
+}
+
+.floating-element:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: var(--shadow-neon), var(--shadow-lg);
+}
+
+/* Premium Data Visualization */
+.chart-container {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin: 1.5rem 0;
+    transition: var(--transition-smooth);
+}
+
+.chart-container:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-md);
+}
+
+/* Advanced Form Styling */
+.form-section {
+    background: var(--bg-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin: 1.5rem 0;
+}
+
+.form-section h3 {
+    color: var(--accent-primary);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Progress Indicators */
+.progress-bar {
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--gradient-primary);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+/* Notification Toast */
+.notification-toast {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.5rem;
+    color: var(--text-primary);
+    box-shadow: var(--shadow-neon);
+    z-index: 1000;
+    animation: slideInRight 0.3s ease;
+}
+
+/* Premium Table Styling */
+.premium-table {
+    background: var(--bg-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin: 1.5rem 0;
+}
+
+.premium-table th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 1rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.premium-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-primary);
+    color: var(--text-secondary);
+}
+
+.premium-table tr:hover {
+    background: var(--bg-glass-hover);
+}
+
+/* Glassmorphism Containers */
+.glass-container {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.02) 50%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Neon Text Effects */
+.neon-text {
+    color: var(--accent-primary);
+    text-shadow: 
+        0 0 5px var(--accent-primary),
+        0 0 10px var(--accent-primary),
+        0 0 15px var(--accent-primary);
+    animation: neonPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse {
+    from {
+        text-shadow: 
+            0 0 5px var(--accent-primary),
+            0 0 10px var(--accent-primary),
+            0 0 15px var(--accent-primary);
+    }
+    to {
+        text-shadow: 
+            0 0 2px var(--accent-primary),
+            0 0 5px var(--accent-primary),
+            0 0 8px var(--accent-primary);
+    }
+}
+
+/* Enhanced Hover States */
+.interactive-element {
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.interactive-element:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* Premium Spacing */
+.section-spacing {
+    margin: 3rem 0;
+}
+
+.content-spacing {
+    margin: 2rem 0;
+}
+
+.element-spacing {
+    margin: 1rem 0;
+}
+
+/* Final Text Visibility Overrides - Force all text to be visible */
+.stApp {
+    color: #FFFFFF !important;
+}
+
+/* Force all text elements to be white */
+.stApp *, 
+.stApp p, 
+.stApp span, 
+.stApp div, 
+.stApp label,
+.stApp h1, 
+.stApp h2, 
+.stApp h3, 
+.stApp h4, 
+.stApp h5, 
+.stApp h6 {
+    color: #FFFFFF !important;
+}
+
+/* Markdown elements */
+.stMarkdown *, 
+.stMarkdown p, 
+.stMarkdown span, 
+.stMarkdown div,
+.stMarkdown h1, 
+.stMarkdown h2, 
+.stMarkdown h3 {
+    color: #FFFFFF !important;
+}
+
+/* Form labels and inputs */
+.stTextInput label,
+.stSelectbox label,
+.stTextArea label,
+.stNumberInput label {
+    color: #FFFFFF !important;
+}
+
+/* Specific overrides for inline styles that should remain */
+.stApp [style*="color: white"] {
+    color: white !important;
+}
+
+.stApp [style*="color: rgba(255,255,255"] {
+    color: rgba(255,255,255,0.95) !important;
+}
+
+/* Ensure dark text on light backgrounds */
+.stApp input,
+.stApp textarea,
+.stApp select {
+    color: #000000 !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Job search page specific fixes */
+.stApp .job-card *,
+.stApp .job-listing *,
+.stApp .search-results * {
+    color: #FFFFFF !important;
+}
+
+/* Metric cards */
+.stMetric * {
+    color: #FFFFFF !important;
+}
+
+/* Expander content */
+.stExpander * {
+    color: #FFFFFF !important;
+}
+
+/* Tab content */
+.stTabs * {
+    color: #FFFFFF !important;
+}
+
+/* Column content */
+.stColumn * {
+    color: #FFFFFF !important;
+}
+
+/* Force visibility for all content blocks */
+div[data-testid="stVerticalBlock"] *,
+div[data-testid="stHorizontalBlock"] *,
+div[data-testid="column"] * {
+    color: #FFFFFF !important;
+}
+
+/* Job search specific overrides */
+.search-title,
+.search-description,
+.company-card *,
+.result-card *,
+.portal-name {
+    color: #FFFFFF !important;
+}
+
+/* Override any hardcoded gray colors */
+.stApp p[style*="color: #888"],
+.stApp span[style*="color: #888"] {
+    color: #CCCCCC !important;
+}
+
+/* Ensure all text in custom HTML is visible */
+.stApp .stMarkdown div,
+.stApp .stMarkdown p,
+.stApp .stMarkdown span,
+.stApp .stMarkdown h1,
+.stApp .stMarkdown h2,
+.stApp .stMarkdown h3 {
+    color: #FFFFFF !important;
+}
+
+/* Force visibility on option menu */
+.nav-link,
+.nav-link-selected {
+    color: #FFFFFF !important;
+}
+
+/* Ensure selectbox and other form elements are visible */
+.stSelectbox > div > div > div,
+.stMultiSelect > div > div > div {
+    color: #000000 !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Global text visibility override - this should catch everything */
+.stApp * {
+    color: #FFFFFF !important;
+}
+
+/* Exception for input fields */
+.stApp input,
+.stApp textarea,
+.stApp select,
+.stSelectbox div,
+.stMultiSelect div {
+    color: #000000 !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Exception for buttons to maintain their styling */
+.stButton > button {
+    color: #FFFFFF !important;
+}
+
+/* Make sure icons remain their intended colors */
+.stApp i[style*="color"] {
+    color: inherit !important;
+}
+
+/* Project Header Styles */
+.project-header {
+    position: relative;
+    z-index: 100;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.project-title {
+    color: white !important;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+    font-family: 'Outfit', sans-serif !important;
+}
+
+.project-subtitle {
+    color: rgba(255,255,255,0.95) !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-family: 'Outfit', sans-serif !important;
+}
+
+/* Remove any top spacing from Streamlit */
+.stApp {
+    padding-top: 0 !important;
+}
+
+.stApp > div {
+    padding-top: 0 !important;
+}
+
+/* Navigation Bar Styling - Compact One Line */
+.navigation-bar {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px !important;
+    padding: 0.8rem !important;
+    margin-bottom: 1.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+/* Navigation Buttons - Compact One Line Design */
+.navigation-bar .stButton > button,
+div[data-testid="stVerticalBlock"] .stButton > button {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #000000 !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    padding: 0.6rem 0.8rem !important;
+    transition: all 0.3s ease !important;
+    text-shadow: none !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+}
+
+.navigation-bar .stButton > button:hover,
+div[data-testid="stVerticalBlock"] .stButton > button:hover {
+    background: rgba(0, 245, 255, 0.9) !important;
+    border-color: rgba(0, 245, 255, 1) !important;
+    color: #000000 !important;
+    transform: translateY(-2px) scale(1.01) !important;
+    box-shadow: 0 4px 12px rgba(0, 245, 255, 0.3) !important;
+    text-shadow: none !important;
+}
+
+/* All Navigation Buttons - Force Visibility */
+.stButton > button {
+    color: #FFFFFF !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    font-weight: 500 !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4) !important;
+}
+
+.stButton > button:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(0, 245, 255, 0.5) !important;
+    color: #00F5FF !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Primary Buttons */
+.stButton > button[data-testid="baseButton-primary"] {
+    color: white !important;
+    background: linear-gradient(135deg, #00F5FF 0%, #FF6B9D 100%) !important;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(0, 245, 255, 0.3) !important;
+}
+
+.stButton > button[data-testid="baseButton-primary"]:hover {
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 0 6px 20px rgba(0, 245, 255, 0.4) !important;
+}
+
+/* Secondary Buttons */
+.stButton > button[data-testid="baseButton-secondary"] {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Navigation Container Columns - Compact */
+div[data-testid="column"] .stButton > button {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #000000 !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    padding: 0.6rem 0.4rem !important;
+    text-align: center !important;
+    width: 100% !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Force text visibility in navigation */
+div[data-testid="column"] .stButton > button span,
+div[data-testid="column"] .stButton > button p,
+div[data-testid="column"] .stButton > button div {
+    color: #000000 !important;
+    font-weight: 600 !important;
+    text-shadow: none !important;
+}
+
+/* Navigation hover effects */
+div[data-testid="column"] .stButton > button:hover {
+    background: rgba(0, 245, 255, 0.9) !important;
+    border-color: rgba(0, 245, 255, 1) !important;
+    color: #000000 !important;
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 8px 25px rgba(0, 245, 255, 0.4) !important;
+}
+
+/* Ensure navigation text is always visible */
+.stApp .navigation-bar *,
+.stApp div[data-testid="column"] .stButton *,
+.stApp div[data-testid="stHorizontalBlock"] .stButton * {
+    color: #000000 !important;
+    text-shadow: none !important;
+}
+
+/* Ultimate navigation button visibility override */
+.navigation-bar button,
+.navigation-bar button *,
+.navigation-bar .stButton button,
+.navigation-bar .stButton button * {
+    color: #000000 !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+    font-weight: 600 !important;
+    text-shadow: none !important;
+}
+
+/* Navigation button hover - ultimate override */
+.navigation-bar button:hover,
+.navigation-bar .stButton button:hover {
+    background: rgba(0, 245, 255, 0.9) !important;
+    border-color: rgba(0, 245, 255, 1) !important;
+    color: #000000 !important;
+    transform: translateY(-4px) scale(1.03) !important;
+    box-shadow: 0 10px 30px rgba(0, 245, 255, 0.5) !important;
+    text-shadow: none !important;
+}
+
+/* Force visibility on all navigation elements */
+div.navigation-bar,
+div.navigation-bar *,
+div.navigation-bar button,
+div.navigation-bar .stButton,
+div.navigation-bar .stButton * {
+    color: #000000 !important;
+}
+
+/* Streamlit column navigation buttons */
+div[data-testid="stHorizontalBlock"] > div[data-testid="column"] button {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #000000 !important;
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    padding: 0.8rem 1rem !important;
+    text-shadow: none !important;
+    min-height: 50px !important;
+}
+
+/* Fix overlapping issues */
+.stApp > div {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Ensure main content is visible */
+.main {
+    position: relative !important;
+    z-index: 10 !important;
+    background: transparent !important;
+}
+
+/* Fix any hidden content */
+div[data-testid="stVerticalBlock"] > div {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Remove any absolute positioning that might hide content */
+.stApp [style*="position: absolute"] {
+    position: relative !important;
+}
+
+/* Ensure minimum height for content visibility */
+.stApp {
+    min-height: 100vh !important;
+}
+
+.main .block-container {
+    min-height: 80vh !important;
+}
+
+/* Fix white text on white background issues */
+.stApp div[style*="background: white"],
+.stApp div[style*="background: #ffffff"],
+.stApp div[style*="background-color: white"],
+.stApp div[style*="background-color: #ffffff"],
+.stApp div[style*="background: #fff"],
+.stApp div[style*="background-color: #fff"] {
+    background: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Ensure text on white backgrounds is dark */
+.stApp div[style*="background: white"] *,
+.stApp div[style*="background: #ffffff"] *,
+.stApp div[style*="background-color: white"] *,
+.stApp div[style*="background-color: #ffffff"] *,
+.stApp div[style*="background: #fff"] *,
+.stApp div[style*="background-color: #fff"] * {
+    color: #000000 !important;
+}
+
+/* Fix Streamlit component backgrounds */
+.stSelectbox > div,
+.stTextInput > div,
+.stTextArea > div,
+.stFileUploader > div,
+.stMultiSelect > div {
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Fix specific Streamlit white background issues */
+.stApp [data-baseweb="select"] > div,
+.stApp [data-baseweb="input"] > div,
+.stApp [data-baseweb="textarea"] > div {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #000000 !important;
+}
+
+/* Ensure dropdowns and selects have proper contrast */
+.stApp select,
+.stApp option {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #000000 !important;
+}
+
+/* Fix tab content backgrounds */
+.stTabs [data-baseweb="tab-panel"] {
+    background: transparent !important;
+}
+
+/* Remove white backgrounds from containers */
+.stContainer,
+.stContainer > div {
+    background: transparent !important;
+}
+
+/* Fix any remaining white background conflicts */
+.stApp .element-container,
+.stApp .stBlock,
+.stApp .block-container {
+    background: transparent !important;
+}
+
+/* Ensure proper contrast for all content */
+.stApp div:not([style*="background"]):not([class*="navigation"]) {
+    background: transparent !important;
+}
+
+/* Override Streamlit's default white backgrounds */
+.stApp .stMarkdown > div,
+.stApp .stText > div,
+.stApp .stWrite > div {
+    background: transparent !important;
+    color: #FFFFFF !important;
+}
